@@ -1,26 +1,38 @@
-
-import Image from 'next/image';
+'use client'
+import EventCard from "@/components/event-card";
+import { dataTest } from "@/app/utils/event-data";
 
 export default function Home() {
   return (
-    <div className="text-center flex-r items-center justify-center">
-      <h1 className="text-balance mt-16 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-        Mi primera dApp
-      </h1>
-      <div className='flex items-center justify-center mt-8'>
-        <Image
-          src="/solanaLogoMark.png"
-          width={60}
-          height={60}
-          alt="Logo"
-        ></Image>
-        <h1 className="ml-2 text-balance text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          Solana
-        </h1>
+    <div>
+      <> { dataTest.length == 0 && (
+        <div className="my-16 flex flex-col items-center">
+          <h1 className="text-4xl text-center font-bold">¡Lo sentimos! No hay eventos disponibles</h1>
+          <h3 className="text-2xl text-center mt-5 mb font-bold">Sé el primero en crear un evento en Solana</h3>
+          <button className="bg-indigo-300 w-40 text-black mt-5 font-semibold px-4 py-1 rounded hover:text-white hover:bg-indigo-400" 
+                onClick={ () => alert("Próximamente")}>
+                Crear Evento
+          </button>
+        </div>
+        )}
+      </>
+      <> { dataTest.length > 0 && (
+        <div className="my-16">
+          <h1 className="text-4xl text-center font-bold">¡No te pierdas los últimos eventos!</h1>
+          <h3 className="text-2xl text-center mt-5 mb font-bold">Forma parte de la gran comunidad de Solana</h3>
+        </div>
+        )}
+      </>
+      <div className="grid gap-4 px-10 mb-10 xl:grid-cols-4 sm:grid-cols-2">
+        {dataTest.map((event, index) => (
+          <EventCard
+            key={index}
+            title={event.title}
+            ticket_price={event.ticket_price}
+            token_price={event.token_price}
+          />
+        ))}
       </div>
-      <p className="mt-6 text-lg leading-8 text-gray-600">
-        Bienvenidos a la tercera edición del #HeavyDutyCamp
-      </p>
     </div>
   );
 }
