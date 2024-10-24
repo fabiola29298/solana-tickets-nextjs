@@ -3,7 +3,7 @@ import { EventData as EventCardProp } from "@/app/utils/event-data";
 
 export default function EventCard(event: EventCardProp) {
   return (
-    <div className="bg-gray-200 p-4 rounded-lg shadow-md hover:shadow-xl hover:border hover:border-indigo-100">
+    <div className="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl hover:border hover:border-indigo-100">
       <h3 className="font-bold mb-4 text-xl text-center">{event.title}</h3>
 
       <div className="flex gap-6 justify-center">

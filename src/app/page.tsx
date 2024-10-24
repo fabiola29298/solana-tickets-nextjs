@@ -5,7 +5,7 @@ import { dataTest } from "@/app/utils/event-data";
 export default function Home() {
   return (
     <div>
-      <> { dataTest.length == 0 && (
+      { dataTest.length == 0 && (
         <div className="my-16 flex flex-col items-center">
           <h1 className="text-4xl text-center font-bold">¡Lo sentimos! No hay eventos disponibles</h1>
           <h3 className="text-2xl text-center mt-5 mb font-bold">Sé el primero en crear un evento en Solana</h3>
@@ -15,14 +15,12 @@ export default function Home() {
           </button>
         </div>
         )}
-      </>
-      <> { dataTest.length > 0 && (
+         { dataTest.length > 0 && (
         <div className="my-16">
           <h1 className="text-4xl text-center font-bold">¡No te pierdas los últimos eventos!</h1>
           <h3 className="text-2xl text-center mt-5 mb font-bold">Forma parte de la gran comunidad de Solana</h3>
         </div>
         )}
-      </>
       <div className="grid gap-4 px-10 mb-10 xl:grid-cols-4 sm:grid-cols-2">
         {dataTest.map((event, index) => (
           <EventCard
