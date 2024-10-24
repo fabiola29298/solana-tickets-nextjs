@@ -1,11 +1,15 @@
 'use client'
 
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Image from "next/image";
 import Link from "next/link";
+import { useWallet } from '@solana/wallet-adapter-react'
 
 export default function Navbar() {
+  const { publicKey } = useWallet()
+
   return (
-    <header className="bg-indigo-300 p-4 flex justify-between items-center min-h-16 shadow-md">
+    <header className="bg-indigo-300 p-4 flex justify-between items-center min-h-20 shadow-md">
       <Link href="/" className="flex items-center gap-2">
         <Image
           src="/logo.png"
@@ -18,19 +22,20 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center gap-4">
-        <nav>
-          <Link href="/mis-eventos" className="mx-2 px-1 font-semibold hover:text-white">
-            Mis Eventos
-          </Link>
+        {
+          publicKey && (
+            <nav>
+            <Link href="/mis-eventos" className="mx-2 px-1 font-semibold hover:text-white">
+              Mis Eventos
+            </Link>
 
-          <Link href="/colaboraciones" className="mx-2 px-1 font-semibold hover:text-white">
-            Colaboraciones
-          </Link>
-        </nav>
-        <button className="bg-purple-400 text-black font-semibold px-4 py-1 rounded hover:text-white hover:bg-purple-500" 
-                onClick={ () => alert("Proxima Clase")}>
-          Daya45...xDrv9
-        </button>
+            <Link href="/colaboraciones" className="mx-2 px-1 font-semibold hover:text-white">
+              Colaboraciones
+            </Link>
+          </nav>
+          )
+        }
+        <WalletMultiButton style={{}} />
       </div>
     </header>
   );

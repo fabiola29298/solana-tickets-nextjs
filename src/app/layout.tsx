@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import "../styles/globals.css";
 import Footer from "@/components/footer";
+import AppWalletProvider from "@/components/app-wallet-provider";
 
 
 export const metadata: Metadata = {
@@ -17,13 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-
-        <section className="min-h-[calc(100vh-3.5rem-4rem)] overflow-auto">
-          {children}
-        </section>
-
-        <Footer />
+        <AppWalletProvider>
+          <Navbar />
+          <section className="min-h-[calc(100vh-3.5rem-5rem)] overflow-auto">
+            {children}
+          </section>
+          <Footer />
+        </AppWalletProvider>
       </body>
     </html>
   );
