@@ -9,7 +9,6 @@ export default function WalletInfo() {
   const { publicKey } = useWallet();
   const [balance, setBalance] = useState<number>(0);
  
-
   const getAirdropOnClick = async () => {
     try {
       if (!publicKey) {
@@ -43,24 +42,25 @@ export default function WalletInfo() {
 
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-evenly p-24">
+    <main className="flex flex-col items-center p-8 bg-green-100 rounded-lg shadow-md">
       {publicKey ? (
-        <div className="flex flex-col gap-4">
-          <h1>Your Public key is: {publicKey?.toString()}</h1>
-          <h2>Your Balance is: {balance} SOL</h2>
-          <div>
+        <div className="flex flex-col gap-4 items-center">
+          <h1 className="text-black font-semibold text-2xl">Tu Wallet:</h1>
+          <h2 className="text-black font-semibold">{publicKey?.toString()}</h2>
+          <h2 className="text-black font-semibold">{balance} SOL</h2>
+          <div className="flexjustify-center" >
             <button
               onClick={getAirdropOnClick}
               type="button"
-              className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
             >
               Get Airdrop
             </button>
           </div>
         </div>
       ) : (
-        <div>
-            <h1>Connect your wallet</h1>
+        <div className="flex flex-col items-center">
+            <h1 className="text-2xl text-center mt-5 mb-4 font-bold">Connect your wallet</h1>
             <WalletMultiButton style={{}} />
         </div>
       )}

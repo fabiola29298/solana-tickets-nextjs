@@ -13,7 +13,7 @@ export default function Collaborations() {
 
   return (
     <div>
-       { dataTest.length == 0 && (
+       { dataTest.length == 0 ?(
           <div className="my-16 flex flex-col items-center">
           <h1 className="text-4xl text-center font-bold">Parece que aún no has colaborado con ningún evento</h1>
           <h3 className="text-2xl text-center mt-5 mb font-bold">¡Explora los últimos eventos en Solana y participa como colaborador!</h3>
@@ -21,8 +21,7 @@ export default function Collaborations() {
                 Explorar eventos
             </Link>
         </div>
-       ) }
-       {dataTest.length > 0 && (
+       ):(
           <div className="my-16">
             <h1 className="text-4xl text-center font-bold">Tus Colaboraciones</h1>
             <h3 className="text-2xl text-center mt-5 mb font-bold">Recolecta tus recompenzas una vez finalizado el evento</h3>

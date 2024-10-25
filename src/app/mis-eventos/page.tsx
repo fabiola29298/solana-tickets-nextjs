@@ -13,7 +13,7 @@ export default function MyEvents() {
 
   return (
     <div>
-       { dataTest.length == 0 && (
+       { dataTest.length == 0 ? (
          <div className="my-16 flex flex-col items-center">
             <h1 className="text-4xl text-center font-bold">Aún no tienes eventos en Solana</h1>
             <h3 className="text-2xl text-center mt-5 mb font-bold">¡Crea tu primer evento hoy mismo!</h3>
@@ -22,8 +22,7 @@ export default function MyEvents() {
                   Crear Evento
               </button>
           </div>
-       )}
-        { dataTest.length > 0 && (
+       ):(
           <div>
             <div className="my-16 flex flex-col items-center">
               <h1 className="text-4xl text-center font-bold">Tus eventos en Solana</h1>
@@ -49,7 +48,7 @@ export default function MyEvents() {
             ))}
           </div>
         </div>
-        )}
+      )}
         
     </div>
   );
