@@ -1,6 +1,6 @@
 'use client'
 import MyEventCard from "@/components/my-event-card";
-import { dataTest } from "../utils/my-event-data";
+import { dataTest } from "../../utils/my-event-data";
 
 import { redirect } from 'next/navigation'
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -32,7 +32,7 @@ export default function MyEvents() {
                     Crear Evento
               </button>
           </div>
-          <div className="grid gap-4 px-10 mb-10 xl:grid-cols-4 sm:grid-cols-2">
+          <div className="grid gap-4 px-10 mb-10 xl:grid-cols-3 sm:grid-cols-2">
             {dataTest.map((event, index) => (
               <MyEventCard
                 key={index}

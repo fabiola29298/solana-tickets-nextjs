@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { EventData as EventCardProp } from "@/app/utils/event-data";
+import { EventData as EventCardProp } from "@/utils/event-data";
 
 export default function EventCard(event: EventCardProp) {
   return (

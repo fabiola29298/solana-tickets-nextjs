@@ -8,11 +8,13 @@ export default function WalletInfo() {
   const { connection } = useConnection();
   const { publicKey } = useWallet();
   const [balance, setBalance] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
  
   const getAirdropOnClick = async () => {
     try {
+      setIsLoading(true);
       if (!publicKey) {
-        throw new Error("Wallet is not Connected");
+        throw new Error("La wallet no está conectada");
       }
       const [latestBlockhash, signature] = await Promise.all([
         connection.getLatestBlockhash(),
@@ -23,20 +25,30 @@ export default function WalletInfo() {
         "confirmed",
       );
       if (sigResult) {
-        alert("Airdrop was confirmed!");
+        alert("Airdrop confirmado!");
       }
+      setIsLoading(false);
     } catch {
-      alert("You are Rate limited for Airdrop");
+      alert("Tarifa de airdrop superada");
+      setIsLoading(false);
+    }
+  };
+
+  const getBalance = async () => {
+    try {
+      if (!publicKey) {
+        throw new Error("La wallet no está conectada");
+      }
+      const newBalance = await connection.getBalance(publicKey);
+      setBalance(newBalance / LAMPORTS_PER_SOL);
+    } catch {
+      alert("Error al obtener saldo");
     }
   };
  
   useEffect(() => {
     if (publicKey) {
-      (async function getBalanceEvery10Seconds() {
-        const newBalance = await connection.getBalance(publicKey);
-        setBalance(newBalance / LAMPORTS_PER_SOL);
-        setTimeout(getBalanceEvery10Seconds, 10000);
-      })();
+     getBalance();
     }
   }, [publicKey, connection, balance]);
 
@@ -48,19 +60,27 @@ export default function WalletInfo() {
           <h1 className="text-black font-semibold text-2xl">Tu Wallet:</h1>
           <h2 className="text-black font-semibold">{publicKey?.toString()}</h2>
           <h2 className="text-black font-semibold">{balance} SOL</h2>
-          <div className="flexjustify-center" >
+          <div className="flex justify-center gap-4" >
             <button
               onClick={getAirdropOnClick}
+              disabled={isLoading}
               type="button"
-              className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
+              className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400 disabled:bg-gray-300 disabled:text-gray-600 disabled:cursor-not-allowed"
             >
-              Get Airdrop
+              { isLoading ? ("Obteniendo airdrop...") : ("Solicitar Airdrop")}
+            </button>
+            <button
+              onClick={getBalance}
+              type="button"
+              className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400 "
+            >
+              Alctualizar Saldo
             </button>
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center">
-            <h1 className="text-2xl text-center mt-5 mb-4 font-bold">Connect your wallet</h1>
+            <h1 className="text-2xl text-center mt-5 mb-4 font-bold">Connecta tu wallet</h1>
             <WalletMultiButton style={{}} />
         </div>
       )}

@@ -1,6 +1,6 @@
 'use client'
 import EventCard from "@/components/event-card";
-import { dataTest } from "@/app/utils/event-data";
+import { dataTest } from "@/utils/event-data";
 import WalletInfo from "@/components/wallet-info";
 
 export default function Home() {

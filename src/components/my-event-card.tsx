@@ -1,4 +1,4 @@
-import { MyEventData as MyEventCardProp } from "@/app/utils/my-event-data";
+import { MyEventData as MyEventCardProp } from "@/utils/my-event-data";
 
 export default function MyEventCard(event: MyEventCardProp) {
   return (
