@@ -1,5 +1,5 @@
 
-import { CollaborationData as CollaborationCardProp } from "@/utils/collaboration-data";
+import { CollaborationData as CollaborationCardProp } from "@/utils/data/collaboration-data";
 
 export default function CollaborationCard(collaboration: CollaborationCardProp) {
   return (
