@@ -1,6 +1,6 @@
 'use client'
 import MyEventCard from "@/components/my-event-card";
-import { dataTest } from "../../utils/my-event-data";
+import { dataTest } from "../../utils/data/my-event-data";
 
 import { redirect } from 'next/navigation'
 import { useWallet } from "@solana/wallet-adapter-react";

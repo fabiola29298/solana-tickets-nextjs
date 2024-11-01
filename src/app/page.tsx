@@ -1,16 +1,38 @@
 'use client'
 import EventCard from "@/components/event-card";
-import { dataTest } from "@/utils/event-data";
 import WalletInfo from "@/components/wallet-info";
+import { EventAccount, getEvents } from "@/services/get-events.service";
+import { useEventManagerProgram } from "@/utils/solana";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const program = useEventManagerProgram();
+  const [events, setEvents] = useState<EventAccount[]>([])
+
+  const getAllEvents = async () => {
+    try {
+      getEvents(program).then( (events) => {
+        if(events ){
+          setEvents(events)
+        }
+      })
+    } catch (error) {
+      console.error("Error getting events:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAllEvents()
+  }, []
+)
+
   return (
     <div>
-      <div>
+      {/* <div>
         <WalletInfo />
-      </div>
+      </div> */}
       <div>
-        { dataTest.length == 0 ? (
+        { events.length == 0 ? (
           <div className="my-16 flex flex-col items-center">
             <h1 className="text-4xl text-center font-bold">¡Lo sentimos! No hay eventos disponibles</h1>
             <h3 className="text-2xl text-center mt-5 mb font-bold">Sé el primero en crear un evento en Solana</h3>
@@ -27,12 +49,11 @@ export default function Home() {
           )
         }
         <div className="grid gap-4 px-10 mb-10 xl:grid-cols-4 sm:grid-cols-2">
-          {dataTest.map((event, index) => (
+          {events.map((event, index) => (
             <EventCard
               key={index}
-              title={event.title}
-              ticket_price={event.ticket_price}
-              token_price={event.token_price}
+              publicKey={event.publicKey}
+              account={event.account}
             />
           ))}
         </div>
