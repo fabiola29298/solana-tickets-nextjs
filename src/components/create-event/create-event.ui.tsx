@@ -30,11 +30,11 @@ export default function CreateEventModal({
 
   const handleFormSubmit: SubmitHandler<EventFormInputs> = async (data) => {
     try {
-      console.log("Creating event:", data);
+      console.log("Creando el evento:", data);
       onSubmit(data);
       reset();
     } catch (error) {
-      console.error("Error creating event:", error);
+      console.error("Error creando el evento:", error);
     }
   };
 
@@ -44,7 +44,7 @@ export default function CreateEventModal({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50">
       <div className="relative top-20 mx-auto max-w-md rounded-lg bg-white p-6">
         <div className="mb-4 flex justify-between">
-          <h2 className="text-xl font-bold">Create New Event</h2>
+          <h2 className="text-xl font-bold">Crear Evento</h2>
           <button
             onClick={onClose}
             className="text-2xl font-bold text-gray-500 hover:text-gray-700"
@@ -55,24 +55,24 @@ export default function CreateEventModal({
 
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium">Event Name</label>
+            <label className="block text-sm font-medium">Nombre</label>
             <input
               {...register("name", {
-                required: "Event name is required",
+                required: "El nombre es obligatorio",
                 minLength: {
                   value: 3,
-                  message: "Name must be at least 3 characters",
+                  message: "El nombre debe tener al menoos 3 caracteres",
                 },
                 maxLength: {
-                  value: 50,
-                  message: "Name must be less than 50 characters",
+                  value: 40,
+                  message: "El nombre NO debe tener maás de 40 caracteres",
                 },
               })}
               type="text"
               className={`w-full rounded-md border p-2 ${
                 errors.name ? "border-red-500" : "border-gray-300"
               }`}
-              placeholder="Enter event name"
+              placeholder="Nombre del evento"
             />
             {errors.name && (
               <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
@@ -80,17 +80,17 @@ export default function CreateEventModal({
           </div>
 
           <div>
-            <label className="block text-sm font-medium">Price (USDC)</label>
+            <label className="block text-sm font-medium">Precio del Ticket (USDC)</label>
             <input
               {...register("price", {
-                required: "Price is required",
+                required: "El precio es obligatorio",
                 min: {
                   value: 0,
-                  message: "Price must be positive",
+                  message: "El precio debe ser positivo",
                 },
                 max: {
                   value: 1000000,
-                  message: "Price is too high",
+                  message: "Precio muy alto",
                 },
                 valueAsNumber: true,
               })}
@@ -99,7 +99,7 @@ export default function CreateEventModal({
               className={`w-full rounded-md border p-2 ${
                 errors.price ? "border-red-500" : "border-gray-300"
               }`}
-              placeholder="Enter price"
+              placeholder="Precio del ticket"
             />
             {errors.price && (
               <p className="mt-1 text-sm text-red-500">
@@ -122,7 +122,7 @@ export default function CreateEventModal({
               disabled={loading}
               className="rounded-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
             >
-              {loading ? "Creating..." : "Create Event"}
+              {loading ? "Creando..." : "Crear Evento"}
             </button>
           </div>
         </form>
