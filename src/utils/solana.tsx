@@ -1,4 +1,4 @@
-import { AnchorProvider, Program } from "@coral-xyz/anchor";
+import { AnchorProvider, Program, setProvider } from "@coral-xyz/anchor";
 import { AnchorWallet, useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
 import { EventManager } from "./idl/idl-event-manager";
@@ -23,5 +23,6 @@ export function useEventManagerProgram() {
     const provider =  new AnchorProvider(connection, wallet as AnchorWallet, {
         commitment: "confirmed",
     });
+    setProvider(provider);
     return new Program(EventManagerIDL as EventManager, EVENT_MANAGER_PROGRAM_ID, provider);
 }
