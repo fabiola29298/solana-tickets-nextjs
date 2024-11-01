@@ -1,6 +1,6 @@
-import { acceptedMint } from "@/utils/solana/solana";
+import { acceptedMint } from "@/utils/solana";
 import { BN } from "bn.js";
-import { allPdas } from "@/utils/solana/find-pda";
+import { allPdas } from "@/utils/find-pdas";
 import { PublicKey } from "@solana/web3.js";
 
 interface createEventInterface {
@@ -26,11 +26,11 @@ export async function createEvent({ name, price, publicKey, program }: createEve
       .createEvent(eventId, name, new BN(price))
       .accounts({
         event: eventPublicKey,
-        acceptedMint: acceptedMint, // example: USDC
+        acceptedMint: acceptedMint, 
         eventMint: eventMintPublicKey, // sponsorship token
         treasuryVault: treasuryVaultPublicKey,
         gainVault: gainVaultPdaPublicKey,
-        authority: publicKey, // event organizer
+        authority: publicKey, 
       })
       .rpc();
 

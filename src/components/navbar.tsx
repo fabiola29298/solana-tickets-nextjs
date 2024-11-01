@@ -1,9 +1,10 @@
 'use client'
 
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Image from "next/image";
 import Link from "next/link";
 import { useWallet } from '@solana/wallet-adapter-react'
+import dynamic from "next/dynamic";
+const WalletMultiButton = dynamic(() => import('@solana/wallet-adapter-react-ui').then(mod => mod.WalletMultiButton), {ssr:false});
 
 export default function Navbar() {
   const { publicKey } = useWallet()

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import CreateEventModal, { EventFormInputs } from './create-event.ui';
 import { createEvent } from '../../services/create-event.service';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useEventManagerProgram } from "@/utils/solana/solana";
+import { useEventManagerProgram } from "@/utils/solana";
 
 export function CreateEventFeature() {
   const [isModalOpen, setIsModalOpen] = useState(false);
