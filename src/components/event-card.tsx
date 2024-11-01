@@ -18,7 +18,7 @@ export default function EventCard(event: EventAccount) {
               width="15"
               height="15">
               </Image>
-            <p className="px-1">{event.account.ticketPrice.toNumber().toFixed(2)}</p>
+            <p className="px-1">{event.account.ticketPrice.toNumber().toFixed(0)}</p>
           </div>
         </button>
         <SponsorEventFeature 

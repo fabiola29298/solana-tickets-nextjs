@@ -1,14 +1,14 @@
 
-import { CollaborationData as CollaborationCardProp } from "@/utils/data/collaboration-data";
+import { SponsoredEvent as CollaborationCardProp } from "@/services/get-sponsored-events.service"
 
-export default function CollaborationCard(collaboration: CollaborationCardProp) {
+export default function CollaborationCard(sponsoredEvent: CollaborationCardProp) {
   return (
     <div className="bg-gray-200 p-6 rounded-lg shadow-md hover:shadow-xl hover:border hover:border-indigo-100">
-      <h3 className="font-bold mb-2 text-xl text-center">{collaboration.event_title}</h3>
-      <p className="mb-5 text-lg text-center"> Colaboraste con: {collaboration.tokens_amount} tokens</p>
+      <h3 className="font-bold mb-2 text-xl text-center">{sponsoredEvent.event.account.name}</h3>
+      <p className="mb-5 text-lg text-center"> Colaboraste con: {sponsoredEvent.tokens.toFixed(0)} tokens</p>
       <div>
         {
-            collaboration.event_closed ? (
+            !sponsoredEvent.event.account.acceptedMint ? (
               <div className="flex gap-6 justify-end">
                 <button className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
                     onClick={() => alert("Próximamente")}>

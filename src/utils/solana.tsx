@@ -9,8 +9,11 @@ export const acceptedMint = new PublicKey(
   "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
 );
 
+export const DECIMALS_PER_USDC = 1000000;
 
 const EVENT_MANAGER_PROGRAM_ID = new PublicKey("8ohjk23KfEnzmy5c2jSLBSQc8DvBT3N64KJwtMoPBUbH");
+export const TOKEN_PROGRAM_ID = new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA");
+export const ASSOCIATED_TOKEN_PROGRAM_ID = new PublicKey('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL');
 
 export function getEventManagerProgramId() {
     return EVENT_MANAGER_PROGRAM_ID
