@@ -17,13 +17,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-
-        <section className="min-h-[calc(100vh-3.5rem-4rem)] overflow-auto">
+      <Navbar />
+      <img src="/beams.jpg" alt="" className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
+        <div className="absolute inset-0 bg-[url(/img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="relative bg-white px-6 pb-8 pt-10 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-4xl sm:rounded-lg sm:px-10">
+      
+        <section className="mx-auto   min-h-[calc(100vh-3.5rem-4rem)] overflow-auto">
           {children}
         </section>
 
-        <Footer />
+       
+      </div>
+      <Footer />
       </body>
     </html>
   );
