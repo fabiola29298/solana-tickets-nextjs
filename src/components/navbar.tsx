@@ -3,7 +3,7 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Image from "next/image";
 import Link from "next/link";
-import { useWallet } from '@solana/wallet-adapter-react'
+import { useWallet } from '@solana/wallet-adapter-react';
 
 export default function Navbar() {
   const { publicKey } = useWallet()
