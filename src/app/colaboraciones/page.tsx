@@ -1,9 +1,9 @@
 'use client'
-import Link from "next/link";
+import Link from "next/link"; 
 import CollaborationCard from "@/components/collaboration-card";
 import { dataTest } from "../../utils/collaboration-data";
 import { redirect } from 'next/navigation'
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react"; 
 
 export default function Collaborations() {
   const { publicKey } = useWallet()
