@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { EventAccount } from "@/services/get-events.service";
+import { SponsorEventFeature } from "./sponsor-event/sponsor-event.feature";
 
 export default function EventCard(event: EventAccount) {
   return (
@@ -17,22 +18,12 @@ export default function EventCard(event: EventAccount) {
               width="15"
               height="15">
               </Image>
-            <p className="px-1">{event.account.ticketPrice.toNumber().toFixed(2)}</p>
+            <p className="px-1">{event.account.ticketPrice.toNumber().toFixed(0)}</p>
           </div>
         </button>
-        <button className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
-                onClick={() => alert("Próximamente")}>
-          Colaborar 
-          <div className="flex flex-row items-center justify-center">
-            <Image 
-              src="/usdc-logo.png"
-              alt="Logo"
-              width="15"
-              height="15">
-              </Image>
-            <p className="px-1">{1}</p>
-          </div>
-        </button>
+        <SponsorEventFeature 
+          publicKey={event.publicKey}
+          account={event.account} ></SponsorEventFeature>
       </div>
     </div>
   );
