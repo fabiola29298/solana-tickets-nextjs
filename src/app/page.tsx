@@ -26,7 +26,6 @@ export default function Home() {
     getAllEvents()
   }, []
 )
-
   return (
     <div>
       {/* <div>
