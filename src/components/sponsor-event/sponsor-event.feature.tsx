@@ -3,7 +3,6 @@ import { SponsorFormInputs } from './sponsor-event.ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useEventManagerProgram } from "@/utils/solana";
 import SponsorEventModal from './sponsor-event.ui';
-import Image from "next/image";
 import { EventAccount } from '@/services/get-events.service';
 import { sponsorEvent } from '@/services/sponsor-event.service';
 
@@ -14,11 +13,11 @@ export function SponsorEventFeature(event: EventAccount) {
   const program = useEventManagerProgram();
   const eventPublicKey = event.publicKey;
 
-  const onSubmit = async ({ amount }: SponsorFormInputs) => {
+  const onSubmit = async ({ quantity }: SponsorFormInputs) => {
     setisLoading(!isLoading);
     try {
         console.log(event)
-        await sponsorEvent({ amount, program, publicKey, eventPublicKey })
+        await sponsorEvent({ quantity, program, publicKey, eventPublicKey })
     } catch (e) {
       console.error(e)
     } finally {

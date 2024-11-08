@@ -8,6 +8,9 @@ export interface EventAccountInfo {
     ticketPrice: BN;
     active:boolean;
     sponsors: BN;
+    ticketsSold: BN;
+    treasuryVaultTotal: BN;
+    gainVaultTotal: BN;
     authority: PublicKey;
     acceptedMint: PublicKey;
     eventBump: number;
