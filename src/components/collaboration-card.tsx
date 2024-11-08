@@ -1,5 +1,6 @@
 
 import { SponsoredEvent as CollaborationCardProp } from "@/services/get-sponsored-events.service"
+import { WithdrawEarningsFeature } from "./withdraw-earnings/withdraw-earnings.feature";
 
 export default function CollaborationCard(sponsoredEvent: CollaborationCardProp) {
   return (
@@ -10,10 +11,12 @@ export default function CollaborationCard(sponsoredEvent: CollaborationCardProp)
         {
             !sponsoredEvent.event.account.active ? (
               <div className="flex gap-6 justify-end">
-                <button className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
-                    onClick={() => alert("Próximamente")}>
-                    Retirar Ganancias 
-                </button>
+
+                <WithdrawEarningsFeature
+                  publicKey={sponsoredEvent.event.publicKey}
+                  account={sponsoredEvent.event.account}
+                ></WithdrawEarningsFeature>
+                
                 </div>
             ):(
               <div className="flex gap-6 justify-center">

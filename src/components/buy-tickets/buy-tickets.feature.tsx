@@ -13,11 +13,11 @@ export function BuyTicketsFeature(event: EventAccount) {
   const program = useEventManagerProgram();
   const eventPublicKey = event.publicKey;
 
-  const onSubmit = async ({ amount }: BuyFormInputs) => {
+  const onSubmit = async ({ quantity }: BuyFormInputs) => {
     setisLoading(!isLoading);
     try {
         console.log(event)
-        await buyTickets({ amount, program, publicKey, eventPublicKey })
+        await buyTickets({ quantity, program, publicKey, eventPublicKey })
     } catch (e) {
       console.error(e)
     } finally {

@@ -1,16 +1,16 @@
 import { BN } from "bn.js";
-import { acceptedMintATA, allPdas, eventMintATA, eventMintPda, treasuryVaultPda } from "@/utils/find-pdas";
+import { acceptedMintATA, eventMintATA, eventMintPda, treasuryVaultPda } from "@/utils/find-pdas";
 import { PublicKey } from "@solana/web3.js";
-import { DECIMALS_PER_USDC } from "@/utils/solana";
+import { acceptedMint, DECIMALS_PER_USDC } from "@/utils/solana";
 
 interface sponsorEventInterface {
-  amount: number,
+  quantity: number,
   publicKey: PublicKey | null,
   program: any,
   eventPublicKey: PublicKey,
 }
 
-export async function sponsorEvent({ amount, publicKey, program, eventPublicKey}: sponsorEventInterface) {
+export async function sponsorEvent({ quantity, publicKey, program, eventPublicKey}: sponsorEventInterface) {
   if (!publicKey) return;
   console.log(eventPublicKey.toString())
 
@@ -22,11 +22,12 @@ export async function sponsorEvent({ amount, publicKey, program, eventPublicKey}
     const acceptedMintAta = acceptedMintATA(publicKey);
 
     const tx = await program.methods
-        .sponsorEvent(new BN(amount*DECIMALS_PER_USDC))
+        .sponsorEvent(new BN(quantity))
         .accounts({
         eventMint: eventMintPublicKey,
         payerAcceptedMintAta: acceptedMintAta,
         event: eventPublicKey,
+        acceptedMint: acceptedMint,
         authority: publicKey,
         payerEventMintAta:eventMintAta,
         treasuryVault: treasuryVaultPublicKey

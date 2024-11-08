@@ -6,12 +6,13 @@ import { CreateEventFeature } from "@/components/create-event/create-event.featu
 import { useEventManagerProgram } from "@/utils/solana";
 import { useEffect, useState } from "react";
 import { getMyEvents, MyEventInfo } from "@/services/get-my-events.service";
+import { EventAccount } from "@/services/get-events.service";
 
 
 export default function MyEvents() {
   const program = useEventManagerProgram();
   const { connection } = useConnection();
-  const [events, setEvents] = useState<MyEventInfo[]>([])
+  const [events, setEvents] = useState<EventAccount[]>([])
   const { publicKey } = useWallet()
   if(!publicKey){
     return redirect('/')
@@ -53,9 +54,8 @@ export default function MyEvents() {
             {events.map((event, index) => (
               <MyEventCard
                 key={index}
-                event={event.event}
-                treasuryVault={event.treasuryVault}
-                gainVault={event.gainVault}
+                publicKey={event.publicKey}
+                account={event.account}
               />
             ))}
           </div>

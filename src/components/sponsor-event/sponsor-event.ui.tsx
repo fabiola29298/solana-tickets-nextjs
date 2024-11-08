@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export interface SponsorFormInputs {
-  amount: number;
+  quantity: number;
 }
 
 export default function SponsorEventModal({
@@ -22,7 +22,7 @@ export default function SponsorEventModal({
     reset,
   } = useForm<SponsorFormInputs>({
     defaultValues: {
-      amount: 0,
+      quantity: 0,
     },
   });
 
@@ -55,7 +55,7 @@ export default function SponsorEventModal({
           <div>
             <label className="block text-sm font-medium">Tokens</label>
             <input
-              {...register("amount", {
+              {...register("quantity", {
                 required: "Amount is required",
                 min: {
                   value: 0,
@@ -70,13 +70,13 @@ export default function SponsorEventModal({
               type="number"
               step="1"
               className={`w-full rounded-md border p-2 ${
-                errors.amount ? "border-red-500" : "border-gray-300"
+                errors.quantity ? "border-red-500" : "border-gray-300"
               }`}
               placeholder="Enter Amount"
             />
-            {errors.amount && (
+            {errors.quantity && (
               <p className="mt-1 text-sm text-red-500">
-                {errors.amount.message}
+                {errors.quantity.message}
               </p>
             )}
           </div>

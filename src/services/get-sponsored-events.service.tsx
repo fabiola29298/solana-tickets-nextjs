@@ -36,17 +36,17 @@ export interface TokenAccount {
         const tokens = await getTokenAccounts(publicKey,connection);
         let sponsored: SponsoredEvent[] = []
   
-        events.map((event) => {
+        for (let event of events){
           let mint = eventMintPda({eventPublicKey: event.publicKey, programId: program.programId});
           for (let token of tokens){
             if(mint.toString() == token.info.mint){
               sponsored.push({
                 event: event,
-                tokens: (token.info.tokenAmount.uiAmount/DECIMALS_PER_USDC)
+                tokens: (token.info.tokenAmount.uiAmount)
               })
             }
           }
-        })
+        }
         console.log(sponsored);
         return sponsored;
   

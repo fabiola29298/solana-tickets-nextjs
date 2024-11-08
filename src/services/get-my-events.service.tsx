@@ -15,35 +15,9 @@ export async function getMyEvents(connection: Connection, program: Program<Event
     
     try {
       const events = await getEvents(program);
-      console.log("Eventos sin filtrar ", events);
       const myEvents = events.filter((event) => event.account.authority.toString() == publicKey.toString());
-      let result: MyEventInfo[] = []
-      for (let event of myEvents) {
-       
-        const treasuryPda = treasuryVaultPda({
-          eventPublicKey: event.publicKey,
-          programId: program.programId
-         });
 
-         const gainPda = gainVaultPda({
-          eventPublicKey: event.publicKey,
-          programId: program.programId
-         });
-
-         const treasury = await getAccount(connection, treasuryPda);
-         console.log("treasury", treasury);
-         const gain = await getAccount(connection, gainPda);
-         console.log("gain", gain);
-
-        result.push({
-          event: event,
-          treasuryVault: treasury,
-          gainVault: gain
-        })
-      }
-      console.log("EVENTS: ", events);
-
-      return result
+      return myEvents
     } catch (e) {
       console.log("EL ERROR: ", e);
     }

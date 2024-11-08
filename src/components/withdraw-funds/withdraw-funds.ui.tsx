@@ -1,10 +1,10 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 
-export interface BuyFormInputs {
-  quantity: number;
+export interface WithdrawFundsFormInputs {
+  amount: number;
 }
 
-export default function BuyTicketsModal({
+export default function WithdrawFundsModal({
   isOpen,
   loading,
   onClose,
@@ -13,20 +13,20 @@ export default function BuyTicketsModal({
   isOpen: boolean;
   loading: boolean;
   onClose: () => void;
-  onSubmit: (data:BuyFormInputs) => void;
+  onSubmit: (data:WithdrawFundsFormInputs) => void;
 }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<BuyFormInputs>({
+  } = useForm<WithdrawFundsFormInputs>({
     defaultValues: {
-      quantity: 0,
+        amount: 0,
     },
   });
 
-  const handleFormSubmit: SubmitHandler<BuyFormInputs> = async (data) => {
+  const handleFormSubmit: SubmitHandler<WithdrawFundsFormInputs> = async (data) => {
     try {
       console.log("Coolaborando en el evento:", data);
       onSubmit(data);
@@ -42,7 +42,7 @@ export default function BuyTicketsModal({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-50">
       <div className="relative top-20 mx-auto max-w-md rounded-lg bg-white p-6">
         <div className="mb-4 flex justify-between">
-          <h2 className="text-xl font-bold">Comprar Tickets del Evento</h2>
+          <h2 className="text-xl font-bold">Retiro de la bóveda del evento</h2>
           <button
             onClick={onClose}
             className="text-2xl font-bold text-gray-500 hover:text-gray-700"
@@ -53,9 +53,9 @@ export default function BuyTicketsModal({
 
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium">Tickets</label>
+            <label className="block text-sm font-medium">Cantidad a retirar:</label>
             <input
-              {...register("quantity", {
+              {...register("amount", {
                 required: "Amount is required",
                 min: {
                   value: 0,
@@ -70,13 +70,13 @@ export default function BuyTicketsModal({
               type="number"
               step="1"
               className={`w-full rounded-md border p-2 ${
-                errors.quantity ? "border-red-500" : "border-gray-300"
+                errors.amount ? "border-red-500" : "border-gray-300"
               }`}
               placeholder="Enter Amount"
             />
-            {errors.quantity && (
+            {errors.amount && (
               <p className="mt-1 text-sm text-red-500">
-                {errors.quantity.message}
+                {errors.amount.message}
               </p>
             )}
           </div>
@@ -95,7 +95,7 @@ export default function BuyTicketsModal({
               disabled={loading}
               className="rounded-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600"
             >
-              {loading ? "Comprando..." : "Comprar Tickets"}
+              {loading ? "Retirando..." : "Retirar"}
             </button>
           </div>
         </form>
