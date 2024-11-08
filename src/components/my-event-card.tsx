@@ -1,6 +1,7 @@
 import { DECIMALS_PER_USDC } from "@/utils/solana";
 import { CloseEventFeature } from "./close-event/close-event.feature";
 import { EventAccount } from "@/services/get-events.service";
+import { WithdrawFundsFeature } from "./withdraw-funds/withdraw-funds.feature";
 
 export default function MyEventCard(myEvent: EventAccount) {
   return (
@@ -26,10 +27,10 @@ export default function MyEventCard(myEvent: EventAccount) {
         </div>
       <div className="flex gap-6 justify-end">
         
-        <button className="bg-indigo-300 text-black font-semibold px-4 py-2 rounded basis-[50%] hover:text-white hover:bg-indigo-400"
-                onClick={() => alert("Próximamente")}>
-          Retirar Fondos 
-        </button>
+        <WithdrawFundsFeature
+         publicKey={myEvent.publicKey}
+         account={myEvent.account}
+        ></WithdrawFundsFeature>
         {
             myEvent.account.active && (
               <CloseEventFeature 
