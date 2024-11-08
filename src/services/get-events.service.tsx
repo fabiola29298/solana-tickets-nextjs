@@ -1,7 +1,6 @@
 import { BN, Program } from "@coral-xyz/anchor";
-import { Connection, GetProgramAccountsFilter, PublicKey } from "@solana/web3.js";
+import { PublicKey } from "@solana/web3.js";
 import { EventManager } from "../utils/idl/idl-event-manager";
-import { TOKEN_PROGRAM_ID } from "@/utils/solana";
 
 export interface EventAccountInfo {
     id: string;
