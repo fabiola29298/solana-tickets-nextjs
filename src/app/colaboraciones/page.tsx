@@ -1,6 +1,7 @@
 'use client'
 import Link from "next/link"; 
-import CollaborationCard from "@/components/collaboration-card"; 
+import CollaborationCard from "@/components/collaboration-card";
+import { dataTest } from "../../utils/data/collaboration-data";
 import { redirect } from 'next/navigation'
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useEventManagerProgram } from "@/utils/solana";
